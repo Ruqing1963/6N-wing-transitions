@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this software or data, please cite it as below."
+title: "6N-dodge-ladder: The Fermat-Type Dodge Ladder n^(2^k)+1 on the 6N Skeleton (Part XXXIII)"
+authors:
+  - family-names: Chen
+    given-names: Ruqing
+    affiliation: "GUT Geoservice Inc., Montreal, Quebec, Canada"
+    email: ruqing@hotmail.com
+date-released: 2026-06-08
+license: MIT
+repository-code: "https://github.com/Ruqing1963/6N-dodge-ladder"
+abstract: >
+  Code and measured primality counts for the Fermat-type family n^(2^k)+1 (n^2+1, n^4+1, n^8+1) on the
+  6N skeleton. The cyclotomic dodge: n^(2^k)+1 is divisible only by q=2 or q=1 mod 2^(k+1), with
+  omega=2^k. The mod-6 wing split is degree-invariant (1:2), while the Bateman-Horn richness C is
+  non-monotonic in k, peaking at n^4+1 (C measured 1.376, 2.676, 2.075 for k=1,2,3), verified by
+  direct Miller-Rabin / BPSW testing including a degree-8 check. No claim is made about the infinitude
+  of primes n^(2^k)+1.
