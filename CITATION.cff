@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this software or data, please cite it as below."
+title: "6N-wing-transitions: Effective Second-Order Markov Dynamics of Prime Wing Transitions (Part XXXIV)"
+authors:
+  - family-names: Chen
+    given-names: Ruqing
+    affiliation: "GUT Geoservice Inc., Montreal, Quebec, Canada"
+    email: ruqing@hotmail.com
+date-released: 2026-06-08
+license: MIT
+repository-code: "https://github.com/Ruqing1963/6N-wing-transitions"
+abstract: >
+  Code and measured data for the memory depth of the prime wing string (R=6N+1, L=6N-1) on the 6N
+  skeleton, over all 26,355,865 primes up to 5e8. The wing chain is not first-order Markov
+  (P(R|RR)=0.4252 vs P(R|LR)=0.4580, 168 sigma); the switch-sequence autocorrelation is -0.0328 at lag
+  1, +0.0046 at lag 2, ~0 beyond, and the incremental memory halves per order (effective second-order,
+  not abrupt cutoff). The wing memory is identified with the consecutive-gap anti-correlation (switch ==
+  [gap not divisible by 6]; step lag-1 = -0.0328 equals normalised-gap lag-1 = -0.0332). Within the
+  Hardy-Littlewood / Oliver-Soundararajan framework; no theorem or mechanism is claimed.
