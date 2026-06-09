@@ -1,0 +1,212 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{placeins}
+\usepackage{booktabs}
+\usepackage[expansion=false]{microtype}
+\usepackage[hidelinks]{hyperref}
+\setlength{\emergencystretch}{3em}
+
+\theoremstyle{definition}
+\newtheorem{proposition}{Proposition}
+
+\title{\bf Topological Strain Memory on the $6N$ Skeleton:\\
+the Effective Second-Order Markov Dynamics\\
+of Prime Wing Transitions%
+\thanks{Code and measured data: \url{https://github.com/Ruqing1963/6N-wing-transitions}}}
+\author{Ruqing Chen\\
+\small GUT Geoservice Inc., Montreal, Quebec, Canada\\
+\small \texttt{ruqing@hotmail.com}}
+\date{June 8, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Every prime $>3$ sits on a wing of the $6N$ lattice---right ($6N{+}1$) or left ($6N{-}1$)---so the
+prime sequence is a binary string of wing symbols. Lemke Oliver and Soundararajan showed that
+consecutive primes avoid repeating their residue class; here we ask a sharper question of the wing
+string: \emph{how deep is its memory?} Using all $26{,}355{,}865$ primes $3<p\le5\times10^{8}$, we test
+the Markov order of the chain. It is decisively \emph{not} first-order: the probability of staying on a
+wing depends on the previous two primes, not one ($P(R\mid RR)=0.4252$ versus $P(R\mid LR)=0.4580$, a
+gap of $0.033$ at $168\sigma$). The cleanest probe is the switch (step) sequence, which for a symmetric
+first-order chain would be independent noise: instead it carries an autocorrelation of $-0.0328$ at lag
+one (a switch is followed by a switch less often than chance---we name this a topological strain
+memory), a weak $+0.0046$ echo at lag two, and \emph{nothing} measurable beyond. The incremental memory
+contributed by each further prime halves per order ($0.033,0.016,0.009,\dots$), so the chain is
+\emph{effectively}---not exactly---second-order: a dominant nearest-neighbour memory with a rapidly
+decaying tail. We then show the wing memory and the well-known anti-correlation of consecutive prime
+gaps are \emph{the same effect}: the switch indicator is identically the event ``gap $\not\equiv0
+\pmod6$,'' and the step lag-one autocorrelation ($-0.0328$) equals the normalised-gap lag-one
+correlation ($-0.0332$). All signals fade slowly with scale, as the Hardy--Littlewood framework
+requires. This is a measurement, not a theorem: the structure lives inside the Hardy--Littlewood
+$r$-tuple heuristic and the Oliver--Soundararajan bias, and what we add is the explicit memory-depth
+characterisation and the gap identification.
+\end{abstract}
+
+\section{Introduction}
+A prime $p>3$ is $\equiv1$ or $\equiv5\pmod6$; call these the right wing ($6N{+}1$) and the left wing
+($6N{-}1$). Reading the primes in order turns them into a string $\dots\mathrm{RLRRLR}\dots$, and the
+naive Cram\'er model says it should be a fair coin: each wing equally likely, transitions independent.
+It is not. Lemke Oliver and Soundararajan \cite{OS} found that consecutive primes are biased
+\emph{against} repeating their class modulo $q$; for $q=3$---which is exactly our wing label, since
+$6N{+}1\equiv1$ and $6N{-}1\equiv2\pmod3$---this makes same-wing transitions rarer than switches.
+
+The bias itself is by now expected. Our question is one level deeper and, to our knowledge, not usually
+posed directly: \emph{what is the memory depth of the wing string?} It is sharpest to set three targets
+against which to read the answer. The \emph{zeroth} target is the Cram\'er model: the wings are a fair
+coin, switches unbiased and independent. The \emph{first} target is the naive reading of the
+Oliver--Soundararajan bias: a switch bias exists, but lives entirely in the current step, so that the
+chance of switching does not depend on how the current wing was reached---$P(\text{switch}\mid\text{previous step})$
+is constant. The \emph{third} possibility, which the data select, is that the chain is genuinely
+higher-order: the switch probability depends on the previous step, and the dependence decays across
+further steps rather than terminating at once. The first target is broken decisively; the third is what
+we measure, with the memory dominated by the second order and a geometrically decaying---not abruptly
+truncated---tail. This is a sharp, finite, measurable question with an answer we did not know in
+advance, and we answer it with the full prime census to $5\times10^{8}$.
+
+We are explicit from the outset about what is and is not new. The existence of higher-order structure is
+contained in the Hardy--Littlewood $r$-tuple heuristic \cite{HL}, which predicts the frequency of every
+finite pattern of consecutive primes, and the Oliver--Soundararajan analysis \cite{OS} is built on it.
+We prove no theorem and propose no new mechanism. What this paper contributes is the explicit
+characterisation of the memory---its order, its sign, its decay rate---in the geometric language of the
+$6N$ wings, and the identification of that memory with the anti-correlation of consecutive prime gaps.
+
+\section{Setup: the wing string and its switch sequence}
+Let $w_i\in\{\mathrm{R},\mathrm{L}\}$ be the wing of the $i$-th prime $>3$. The two wings occur almost
+equally often (to $5\times10^{8}$, $13{,}177{,}500$ right against $13{,}178{,}365$ left; the residual
+Chebyshev bias is below $10^{-4}$), so the chain is very nearly symmetric under $\mathrm{R}\!\leftrightarrow\!\mathrm{L}$.
+
+This symmetry gives a clean test of Markov order. Define the \emph{switch} (step) sequence
+$\sigma_i=\mathbf{1}[w_{i+1}\ne w_i]$. For a \emph{symmetric} first-order Markov chain the switch
+probability is the same in both states, so $\sigma_i$ would be an independent Bernoulli sequence with
+\emph{zero} autocorrelation at every lag. Any measured autocorrelation of $\sigma$ is therefore direct
+evidence that the wing chain is \emph{not} first-order. We enumerate the primes by a sieve to
+$N=5\times10^{8}$ and form $w$, $\sigma$, and the prime gaps $d_i=p_{i+1}-p_i$ directly; no modelling
+enters.
+
+\section{The chain is not first-order}
+The marginal transition is $P(\text{same wing})=0.441$, $P(\text{switch})=0.559$: already the
+$6\%$ Oliver--Soundararajan deficit against the fair-coin $0.5$. Conditioning on one more prime breaks
+the first-order hypothesis outright (Table~\ref{tab:trip}): with the current wing held at R, the next
+wing still depends on the one before,
+\[
+P(R\mid RR)=0.4252,\qquad P(R\mid LR)=0.4580,
+\]
+a difference of $0.0328$. With $5.8\times10^{6}$ samples in each cell the standard error is $\sim2\times
+10^{-4}$, so the gap is significant at $168\sigma$. A first-order chain requires these to be equal; they
+are not.
+
+\begin{table}[t]
+\centering\small
+\begin{tabular}{lcc|lcc}
+\toprule
+pattern & count & $P(\text{next}=R)$ & pattern & count & $P(\text{next}=R)$\\
+\midrule
+RR & $5{,}843{,}102$ & $0.4252$ & LR & $7{,}334{,}397$ & $0.4580$\\
+RL & $7{,}334{,}397$ & $0.5420$ & LL & $5{,}843{,}967$ & $0.5748$\\
+\bottomrule
+\end{tabular}
+\caption{Second-order conditional probabilities. Holding the current wing fixed, the next wing still
+depends on the previous one ($P(R\mid RR)\ne P(R\mid LR)$), so the chain is not first-order Markov.}
+\label{tab:trip}
+\end{table}
+
+\section{The memory depth}
+How far back does the dependence reach? The switch-sequence autocorrelation (Fig.~\ref{fig:fig1}(A))
+answers cleanly, because under the first-order null it should vanish at all lags:
+\[
+\rho_1=-0.0328\ (168\sigma),\quad \rho_2=+0.0046\ (24\sigma),\quad \rho_3=-1\times10^{-5}\ (0\sigma),
+\]
+with $\rho_{\ge3}$ indistinguishable from zero. The memory is overwhelmingly nearest-neighbour: a switch
+is \emph{less} likely to be followed by another switch ($P(\sigma{=}1\mid\sigma_{\text{prev}}{=}1)=0.544$
+against $P(\sigma{=}1\mid\sigma_{\text{prev}}{=}0)=0.578$), as if a jump between wings relieves a strain
+that then takes a step to rebuild---a kind of arithmetic inertia, the sequence resisting two abrupt
+moves in a row. We use the image only as a name for the measured sign of $\rho_1$; it describes an
+autocorrelation, not a force. The sign---anti-persistence of switches---is the dynamical face of
+the Oliver--Soundararajan deficit.
+
+``Effectively second-order'' must be stated carefully, and the full conditional table makes the
+qualification honest. The incremental memory contributed by the oldest prime in a pattern---the average
+of $|P(R\mid\mathrm{R}\cdots)-P(R\mid\mathrm{L}\cdots)|$ over the intervening symbols---does not cut off
+abruptly; it \emph{halves} with each order (Fig.~\ref{fig:fig1}(B)):
+\[
+0.0328\ (m{=}2)\ \to\ 0.0159\ (m{=}3)\ \to\ 0.0092\ (m{=}4),
+\]
+ratios $0.48$ and $0.58$, descending toward the finite-sample floor by $m\approx5$. So the chain is not
+exactly a second-order Markov chain; it is one with a dominant second-order term and a geometrically
+decaying tail of weaker higher-order corrections. ``Effective second-order'' names this hierarchy, not a
+hard truncation. The switch autocorrelation, which already collapses by lag three, and the
+slower conditional decay are two views of the same short-ranged, rapidly fading memory.
+
+\section{One effect, two projections: wings and gaps}
+The wing memory is not separate from the known anti-correlation of consecutive prime gaps---it is the
+same statistic. A switch occurs exactly when the gap is not a multiple of $6$: to $5\times10^{8}$ the
+identity $\sigma_i=\mathbf{1}[\,6\nmid d_i\,]$ holds for every prime (agreement $1.0000$), because
+crossing wings changes the residue mod $3$. Measuring both,
+\[
+\rho_1(\sigma)=-0.0328,\qquad \mathrm{corr}(g_i,g_{i+1})=-0.0332\quad(g_i=d_i/\log p_i),
+\]
+which agree to the third decimal. The conditional gap curve (Fig.~\ref{fig:fig2}(A)) shows the mechanism
+in gap language: after a small gap the next gap runs above average, after a large gap below---primes
+resist clustering, and a wing switch is the coarse, mod-$6$ shadow of that resistance. We state this as
+an identification, not a metaphor: the second-order wing memory and the consecutive-gap
+anti-correlation are one anti-clustering tendency seen through two resolutions.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{p34_fig1.pdf}
+\caption{(A) Autocorrelation of the switch sequence: under a first-order chain it would be zero
+everywhere. It is $-0.033$ at lag one ($168\sigma$), a weak $+0.005$ at lag two, and consistent with
+zero beyond. (B) The incremental memory contributed by each further prime halves per order, descending
+toward the finite-sample floor---a decaying tail, not an abrupt cutoff.}
+\label{fig:fig1}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{p34_fig2.pdf}
+\caption{(A) Gap memory: the expected next normalised gap decreases with the current one (independence
+would be flat at $1$). The wing switch lag-one autocorrelation and the normalised-gap lag-one
+correlation coincide ($-0.0328$ vs $-0.0332$): one anti-clustering effect, two projections. (B) Both the
+first-order ($\tfrac12-P(\text{same})$) and second-order ($|P(W|W)-P(W|S)|$) signals fade slowly as the
+primes grow, as the Hardy--Littlewood framework requires.}
+\label{fig:fig2}
+\end{figure}
+
+\FloatBarrier
+\section{Scope and honest ledger}
+The wing string of the primes is not a fair coin and not a first-order Markov chain. It carries a
+nearest-neighbour memory---a switch suppresses the next switch by $0.033$---with a weak second echo and
+a geometrically decaying higher-order tail, so it is effectively, not exactly, second-order. That memory
+is the same object as the anti-correlation of consecutive gaps, the switch being identically the event
+that the gap is not divisible by $6$. Every signal fades slowly toward the fair-coin limit as the primes
+grow (Fig.~\ref{fig:fig2}(B)): $P(\text{same})$ rises from $0.404$ below $10^{5}$ to $0.446$ near
+$5\times10^{8}$, and the second-order term shrinks in step.
+
+We are explicit about the boundary. The anti-repetition bias is Lemke Oliver and Soundararajan's
+\cite{OS}; the heuristic that predicts every consecutive-pattern frequency, and hence all of the
+structure measured here, is Hardy and Littlewood's \cite{HL}; the slow fade with scale is the expected
+behaviour of these conjectural densities. We prove nothing and propose no mechanism beyond these. What
+this paper adds is the explicit memory-depth characterisation of the wing chain---its order, the sign
+and magnitude of each term, and the geometric decay---together with the identification of that memory
+with the consecutive-gap anti-correlation, all in the $6N$ geometric language and measured against the
+full prime census to $5\times10^{8}$. The words ``strain'' and ``anti-clustering'' name measured
+correlations; they are not claims about a physical force. Everything here equals a direct count over the
+primes and takes the Hardy--Littlewood heuristic as input.
+
+\paragraph{Data and code availability.} The sieve to $5\times10^{8}$, the wing and switch sequences, the
+order-$1$ to order-$4$ transition tables, the autocorrelation and memory-depth measurements, the
+gap identification, and the figure scripts are openly available at
+\url{https://github.com/Ruqing1963/6N-wing-transitions}.
+
+\begin{thebibliography}{9}
+\bibitem{HL} G.~H.~Hardy, J.~E.~Littlewood, \emph{Some problems of `Partitio Numerorum'; III}, Acta Math.\ \textbf{44} (1923), 1--70.
+\bibitem{OS} R.~J.~Lemke Oliver, K.~Soundararajan, \emph{Unexpected biases in the distribution of consecutive primes}, Proc.\ Natl.\ Acad.\ Sci.\ USA \textbf{113} (2016), E4446--E4454.
+\bibitem{PXXIX} R.~Chen, \emph{Twin counts in short intervals: singular-series rigidity and the density-gradient variance} (Part XXIX), Zenodo, doi:10.5281/zenodo.20597725 (2026).
+\bibitem{PXXXIII} R.~Chen, \emph{The Fermat-type dodge ladder: primes $n^{2^k}+1$ on the 6N skeleton} (Part XXXIII), Zenodo, doi:10.5281/zenodo.20602622 (2026).
+\bibitem{review} R.~Chen, \emph{Arithmetic geodynamics on the 6N skeleton: a review of Parts I--XIX}, Zenodo, doi:10.5281/zenodo.20585301 (2026).
+\end{thebibliography}
+
+\end{document}
