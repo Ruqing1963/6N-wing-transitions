@@ -1,0 +1,5 @@
+quantity,value,note
+step_lag1_autocorr,-0.03278,wing switch-sequence lag-1
+gap_normalized_lag1_corr,-0.03321,"corr(g_n,g_{n+1}), g=d/log p"
+raw_gap_lag1_corr,-0.02857,"corr(d_n,d_{n+1})"
+step_equals_gap_mod6_indicator,1.00000,step_i == [gap_i not divisible by 6]

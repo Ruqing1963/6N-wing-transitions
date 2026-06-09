@@ -1,0 +1,5 @@
+order,incremental_memory_mean,incremental_memory_weighted,ratio_to_prev
+2,0.032782,0.032782,nan
+3,0.015858,0.016041,0.4837
+4,0.009223,0.009358,0.5816
+5,0.007791,0.007825,0.8447

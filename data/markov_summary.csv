@@ -1,0 +1,10 @@
+parameter,value
+Nmax,500000000
+n_primes_gt3,26355865
+P_next_R_given_R,0.44342
+P_next_R_given_RR,0.42516
+P_next_R_given_LR,0.45796
+second_order_split_RR_vs_LR,-0.03280
+step_lag1_autocorr,-0.03278
+gap_norm_lag1_corr,-0.03321
+verdict,wing chain is NOT first-order Markov; effective second-order (lag>=3 step autocorr vanishes)
